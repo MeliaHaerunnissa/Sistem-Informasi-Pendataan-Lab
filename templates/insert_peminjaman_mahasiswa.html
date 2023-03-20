@@ -1,0 +1,83 @@
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/sidebar_mahasiswa.html' %}
+</body>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Peminjaman</h1>
+    </div>
+
+    <section class="content">
+        <div class="container">
+            <div class="col-md-12">
+            <div class="card-body">
+                <form action="{{ url_for('insert_peminjaman_mahasiswa') }}" method = "post">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_alat" class="form-label">Nama Alat: </label>
+                            <select type="text" name="id_alat" class="form-control" id="id_alat" required>
+                                    <option value="---">---</option>
+                                    <option value="1">Gelas Ukur</option>
+                                    <option value="2">Corong</option>
+                                    <option value="3">Pipet</option>
+                                </select>
+                        </div>
+                        <br>
+                    </form>
+
+                        <div class="form-group col-md-6">
+                            <label for="jumlah" class="form-label">Jumlah: </label>
+                            <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah" size="30" maxlength="30">
+                        </div>
+                        <br>
+
+                        <div class="form-group col-md-6">
+                            <label for="tgl_peminjaman" class="form-label">Tanggal Peminjaman: </label>
+                            <input type="date" name="tgl_peminjaman" class="form-control" id="tgl_peminjaman" placeholder="Tanggal Peminjaman" size="30" maxlength="30">
+                        </div>
+                        <br>
+
+                        <div class="form-group col-md-6">
+                            <label for="tgl_pengembalian" class="form-label">Tanggal Pengembalian: </label>
+                            <input type="date" name="tgl_pengembalian" class="form-control" id="tgl_pengembalian" placeholder="Tanggal Pengembalian" size="30" maxlength="30">
+                        </div>
+                        <br>
+
+                        <div class="form-group col-md-6">
+                            <label for="keterangan" class="form-label">Keterangan: </label>
+                            <input type="text" name="keterangan" class="form-control" id="keterangan" placeholder="keterangan" size="30" maxlength="30">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <input type="hidden" name="status" value="pending" id="status">
+                        </div>
+                        <br>
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Simpan</button>
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Data Disimpan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Data Berhasil Disimpan
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Oke</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+</html>

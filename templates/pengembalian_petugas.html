@@ -1,0 +1,61 @@
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/sidebar_petugas.html' %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Data Pengembalian Alat Lab</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Data Pengembalian Alat Lab</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section 
+    class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Pengembalian Alat Lab</h5>
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Mahasiswa</th>
+                                    <th scope="col">Nama Alat</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Tanggal Kembali</th>
+                                    <th scope="col">Kondisi</th>
+                                    <th scope="col">Status Alat</th>
+                                </tr>
+                                {% for baris in container %}
+                                <tr>
+                                    <th scope="col">{{ baris[0] }}</th>
+                                    <th scope="col">{{ baris[1] }}</th>
+                                    <th scope="col">{{ baris[2] }}</th>
+                                    <th scope="col">{{ baris[3] }}</th>
+                                    <th scope="col">{{ baris[4] }}</th>
+                                    <th scope="col">{{ baris[5] }}</th>
+                                    <td>
+                                        <a href="{{ url_for('update_pengembalian', id_pengembalian=baris[0]) }}"><button class="btn btn-primary">Ubah</button>/a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('delete_pengembalian', id_pengembalian=baris[0]) }}"><button class="btn btn-primary">Hapus</button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+</body>
+</html>

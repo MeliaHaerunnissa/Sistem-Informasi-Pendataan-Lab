@@ -1,0 +1,101 @@
+{% include 'includes/head.html' %}
+    <link rel="stylesheet" href="static/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="static/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="static/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="static/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="static/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="static/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="static/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="static/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="static/plugins/jszip/jszip.min.js"></script>
+    <script src="static/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="static/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="static/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+</head>
+<body>
+{% include 'includes/sidebar_petugas.html' %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Data Peminjaman Alat Lab</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Data Peminjaman Alat Lab</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section class="section">
+        <div class="row">
+          <div class="container-fluid">
+            <div class="table-responsive">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="example1" class="table table-striped">
+                        <h5 class="card-title">Data Peminjaman Alat Lab</h5>
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Dosen</th>
+                                <th scope="col">Nama Alat</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Tanggal Peminjaman</th>
+                                <th scope="col">Tanggal Pengembalian</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ubah</th>
+                                <th scope="col">Hapus</th>
+                            </tr>
+                          </thead>
+                          {% for baris in container %}
+                          <tr>
+                              <th scope="col">{{ loop.index }}</th>
+                              <th scope="col">{{ baris[1] }}</th>
+                              <th scope="col">{{ baris[2] }}</th>
+                              <th scope="col">{{ baris[3] }}</th>
+                              <th scope="col">{{ baris[4] }}</th>
+                              <th scope="col">{{ baris[5] }}</th>
+                              <th scope="col">{{ baris[6] }}</th>
+                              <th scope="col">{{ baris[7] }}</th>
+                              <td>
+                                  <a href="{{ url_for('update_peminjaman_dosen', id_peminjaman=baris[0]) }}"><button class="btn btn-primary">ubah</button></a>
+                              </td>
+                              <td>
+                                  <a href="{{ url_for('delete_peminjaman_dosen', id_peminjaman=baris[0]) }}"><button class="btn btn-primary">hapus</button></a>
+                              </td>
+                            </tr>
+                          {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+</main>
+</body>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</html>

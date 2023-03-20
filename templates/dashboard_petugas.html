@@ -1,0 +1,159 @@
+{% include 'includes/head.html' %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Charts / Chart.js - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="/static/img/stikes.jpg" rel="icon">
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/static/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/static/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link href="/static/css/style.css" rel="stylesheet">
+  
+</head>
+<body>
+{% include 'includes/sidebar_petugas.html' %}
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Pengguna </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ data_pengguna }}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Jumlah Alat </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-user-o"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ data_alat }}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Jumlah Peminjaman</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ data_peminjaman }}</h6>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Peminjaman</h5>
+                        <canvas id="data_peminjaman_alat" style="max-height: 250px;"></canvas>
+                        <script>
+                            let id_peminjaman = JSON.parse({{id_peminjaman | tojson}});
+                            let nama_alat = JSON.parse({{nama_alat | tojson}});
+
+                            let data_peminjaman_alat_chart = new Chart(data_peminjaman_alat, {
+                                type: 'bar',
+                                data: {
+                                labels: nama_alat,
+                                    datasets: [{
+                                        label: "Data peminjaman",
+                                        data: id_peminjaman,nama_alat,
+                                        backgroundColor: ['#5DA5DA ', '#FAA43A', '#60BD68', '#B276B2', '#E16851', '#FB8267'],
+                                        borderWidth: 1,
+                                        hoverBorderColor: "black",
+                                        hoverBorderWidth: 2,
+                                        hoverBackgroundColor: 'rgba(154, 245, 140)',
+                                        pointHoverRadius: 5
+                                    }],
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: "Data Alat",
+                                        fontSize: 20,
+                                    },
+                                    legend: {
+                                        position: "right",
+                                        labels: {
+                                            fontColor: "gray"
+                                        },
+                                        display: true,
+                                    },
+                                    elements: {
+                                        hitRadius: 3,
+                                    }
+                                }
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</main>
+</body>
+</html>

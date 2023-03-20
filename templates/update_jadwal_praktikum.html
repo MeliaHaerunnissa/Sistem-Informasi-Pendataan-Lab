@@ -1,0 +1,49 @@
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/sidebar_petugas.html' %}
+</body>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Tambah Jadwal Praktikum</h1>
+    </div>
+    <br>
+    <section class="content">
+    	<div class="container">
+    		<div class="col-md-12">
+    		<div class="card-body">
+    			<form action="{{ url_for('update_prosess_jadwal') }}" method = "post">
+    				<div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="id_ruang" class="form-label">Ruang Lab: </label>
+                            <select type="text" name="id_ruang" class="form-control" id="id_ruang" required>
+                                    <option value="---">---</option>
+                                    <option value="1">Lab 1A</option>
+                                    <option value="2">Lab 1B</option>
+                                    <option value="3">Lab 2A</option
+                                    value="{{ data [1] }}">
+                                </select>
+                            </div>
+                        <br>
+
+    					<div class="form-group col-md-6">
+    						<label for="tanggal_jadwal" class="form-label">Tanggal Praktikum: </label>
+    						<input type="date" name="tanggal_jadwal" class="form-control" id="tanggal_jadwal" placeholder="Tanggal Praktikum" size="30" maxlength="30" value="{{ data [2] }}">
+    					</div>
+    					<br>
+
+    					<div class="form-group col-md-6">
+    						<label for="jam" class="form-label">Jam: </label>
+    						<input type="time" name="jam" class="form-control" id="jam" placeholder="Jam" size="30" maxlength="30" value="{{ data [3] }}">
+    					</div>
+    					<br>
+    					<input type="hidden" name="id_jadwal" value="{{ data [0] }}" />
+    					<p><input type="submit" value="simpan"></p><br />
+    				</div>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+</section>
+</main>
+</html>

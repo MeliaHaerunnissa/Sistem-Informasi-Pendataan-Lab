@@ -1,0 +1,49 @@
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/sidebar_petugas.html' %}
+</body>
+<main id="main" class="main">
+	<div class="pagetitle">
+        <h1>Ubah Data Alat Lab</h1>
+    </div>
+    <section class="content">
+    	<div class="container">
+    		<div class="col-md-12">
+    		<div class="card-body">
+    			<form action="{{ url_for('update_prosess') }}" method = "post">
+    				<div class="form-row">
+    					<div class="form-group col-md-6">
+    						<label for="nama_alat" class="form-label">Nama Alat: </label>
+    						<input type="text" name="nama_alat" class="form-control" id="nama_alat" placeholder="Nama Alat" value="{{ data [1] }}" size="30" maxlength="30">
+    					</div>
+    					<br>
+
+    					<div class="form-group col-md-6">
+    						<label for="jumlah" class="form-label">Jumlah: </label>
+    						<input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Alat" value="{{ data [2] }}" size="30" maxlength="30">
+    					</div>
+    					<br>
+    				</form>
+
+    					<div class="form-group col-md-6">
+    						<label for="kondisi" class="form-label">Kondisi: </label>
+    						<input type="text" name="kondisi" class="form-control" id="kondisi" placeholder="Kondisi" value="{{ data [3] }}" size="30" maxlength="30">
+    					</div>
+    					<br>
+
+    					<div class="form-group col-md-6">
+    						<label for="keterangan" class="form-label">Keterangan: </label>
+    						<input type="text" name="keterangan" class="form-control" id="keterangan" placeholder="keterangan" value="{{ data [4] }}" size="30" maxlength="30">
+    					</div>
+    					<br>
+    					<input type="hidden" name="id_alat" value="{{ data [0] }}" />
+    					<p><input type="submit" value="simpan"></p><br />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+</html>
